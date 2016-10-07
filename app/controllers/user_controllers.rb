@@ -13,3 +13,19 @@ post '/users' do
 		erb :'/users/new'
 	end
 end
+
+get '/users/login' do
+	erb :'users/login'
+end
+
+post '/users/login' do
+	user = User.find_by(username: params[:username])
+
+	if user.authenticate(params[:password])
+		session[:user_id] = user.id
+		redirect '/'
+	else
+		@errors = ["Invalid username of password"]
+		erb :'users/login'
+	end
+end
