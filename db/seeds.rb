@@ -1,12 +1,12 @@
 #key is question #value is answer
 
 movies = [
-  {:question => "Who is the lead actor of Snakes on a Plane that demanded the studio keep the title because it was the onl¥ reason he accepted the role?"
+  {:question => "Who is the lead actor of Snakes on a Plane that demanded the studio keep the title because it was the only reason he accepted the role?"
    :answer => "Samuel L. Jackson" },
-  {:question => "In National Treasure the 'good guys' in the movie used Google and hte bad guys used which competing search enginge?"
-    :answer => "Yahoo"},
-  {:question => "In Iron Mana/Avengers what does the acronym J.A.R.V.I.S stand for?"
-   :answer => "Just a rather very intelligent system"},
+  {:question => "In National Treasure the 'good guys' in the movie used Google and the bad guys used which competing search enginge?"
+    :answer => "yahoo"},
+  {:question => "In Iron Man/Avengers what does the acronym J.A.R.V.I.S stand for?"
+   :answer => "just a rather very intelligent system"}
         ]
 
 random = [
