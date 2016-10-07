@@ -3,7 +3,13 @@ get '/users/new' do
 end
 
 post '/users' do
-	@user = User.create(username: params[:username], email: params[:email], password_hash: params[:password_hash])
+	user = User.new(username: params[:username], email: params[:email], password_hash: params[:password_hash])
 
-	redirect '/'
+	if user.save
+		session[:user_id] = user.id
+		redirect '/'
+	else
+		@errors = user.errors.full_messages
+		erb :'/users/new'
+	end
 end
