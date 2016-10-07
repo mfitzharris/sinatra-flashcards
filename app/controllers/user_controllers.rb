@@ -20,8 +20,10 @@ end
 
 post '/users/login' do
 	user = User.find_by(username: params[:username])
-
-	if user.authenticate(params[:password])
+	if !user
+		@errors = ["Invalid username or password"]
+		erb :'users/login'
+	elsif user.authenticate(params[:password])
 		session[:user_id] = user.id
 		redirect '/'
 	else
