@@ -1,4 +1,10 @@
 <main>
+	<% if @errors %>
+		<% @errors.each do |error| %>
+			<p><%= error %></p>
+		<% end %>
+	<% end %>
+
 	<form action="/users" method="post">
 	<label for="username">Username:</label><br>
 	<input type="text" name="username"/><br>
@@ -7,7 +13,7 @@
 	<input type="email" name="email"/><br>
 
 	<label for="password_hash">Password:</label><br>
-	<input type="password" name="password_hash"/><br>
+	<input type="password" name="password"/><br>
 
 	<input type="submit" value="Create account"/>		
 	</form>

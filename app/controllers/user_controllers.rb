@@ -3,9 +3,10 @@ get '/users/new' do
 end
 
 post '/users' do
-	user = User.new(username: params[:username], email: params[:email], password_hash: params[:password_hash])
+	user = User.new(username: params[:username], email: params[:email], password: params[:password])
 
 	if user.save
+		p user.password
 		session[:user_id] = user.id
 		redirect '/'
 	else
