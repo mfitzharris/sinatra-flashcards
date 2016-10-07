@@ -6,4 +6,6 @@ class Card < ActiveRecord::Base
     guess == self.answer
   end
 
+
+
 end
