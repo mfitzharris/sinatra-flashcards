@@ -1,4 +1,4 @@
-# Web Flash Cards 
+# Web Flash Cards - Matt
 
 ## Summary
 We're going to create a web-based flash card application.  Our application will present users with decks of flash cards.  Users will select a deck and play a round of flash cards.
@@ -76,5 +76,11 @@ If we haven't been writing tests as we go—or even better using TDD—then now 
 
 ## Conclusion
 The application we built in this challenge represents a step up in complexity compared to our previous web application challenges—both technically and organizationally.  This challenge is as much about project management and team dynamics as it is about the code.  What skills/lessons did you learn from working with a team?  How will you work better next time?
+<<<<<<< HEAD
 
 ## jwarshaw test merge
+||||||| merged common ancestors
+=======
+
+dave test change
+>>>>>>> 846258aff3a75f78a2b2eab5036e94b52f52c165
