@@ -3,3 +3,6 @@ module UserControllersHelper
 		@user = @user || User.find_by(username: session[:user_id])
 	end
 end
+
+helpers UserControllersHelper
+
