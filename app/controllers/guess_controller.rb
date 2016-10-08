@@ -1,13 +1,7 @@
 get '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses' do
 
 	@card = Card.find(params[:card_id])
-	guess = Guess.find_by(round_id: params[:round_id], card_id: params[:card_id])
-
-	if guess
-		@guess_id = guess.id
-	else
-		@guess_id = Guess.create(round_id: params[:round_id], card_id: params[:card_id]).id
-	end
+	@guess_id = Guess.find_by(round_id: params[:round_id], card_id: params[:card_id]).id
 
 	redirect "decks/#{params[:deck_id]}/cards/#{params[:card_id]}/rounds/#{params[:round_id]}/guesses/#{@guess_id}"
 
@@ -23,7 +17,7 @@ get '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:id' do
 	erb :login_logout do
 		erb :'cards/show'
 	end
-	
+
 end
 
 put '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:guess_id' do
@@ -33,18 +27,25 @@ put '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:guess_id' do
 
 	guess = Guess.find(params[:guess_id])
 
-
-	#MVP logic. this will have to change when we random shuffle deck
-	@card_id = params[:card_id].to_i + 1
+	# #MVP logic. this will have to change when we random shuffle deck
+	# @card_id = params[:card_id].to_i + 1
 
 	guess.counter += 1
 
 	if card.answer == recent_guess
-		guess.correct == true
+		guess.update(correct: true)
 	end
 
-	redirect "decks/#{params[:deck_id]}/cards/#{@card_id}/rounds/#{params[:round_id]}/guesses"
+	@card_id = Deck.find(params[:deck_id]).cards.where( )
+	round = Round.find(params[:round_id])
+	false_guesses = round.guesses.select { |g| g.correct == false }
 
+	if false_guesses.length == 0
+		redirect "/"
+	else
+		@card_id = false_guesses.sample.card_id
+		redirect "decks/#{params[:deck_id]}/cards/#{@card_id}/rounds/#{params[:round_id]}/guesses"
+	end
 end
 
 

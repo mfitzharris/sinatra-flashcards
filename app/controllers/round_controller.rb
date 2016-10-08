@@ -4,15 +4,19 @@ post '/decks/:deck_id/rounds' do
 
 	#remove this query once we get the current_user helper working
 	user = User.find_by(id: session[:user_id])
-	
+	deck = Deck.find(params[:deck_id])
+
 	if user
 		round = Round.create(deck_id: params[:deck_id], user_id: user.id)
 	else
 		round = Round.create(deck_id: params[:deck_id])
 	end
 
+	deck.cards.each do |card|
+		Guess.create(round_id: round.id, card_id: card.id)
+	end
 	#MVP feature. Final project should shuffle the deck then return the card id of the first card in the shuffled deck
-	card_id = Deck.find(params[:deck_id]).cards.first.id
+	card_id = Deck.find(params[:deck_id]).cards.sample.id
 
 	redirect "decks/#{params[:deck_id]}/cards/#{card_id}/rounds/#{round.id}/guesses"
 
