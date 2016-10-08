@@ -1,3 +1,15 @@
+<% if session[:user_id] %>
+	<form action='/users/logout' method='post'>
+		<input type='hidden' name='_method' value='delete'>
+		<input type='submit' value='logout'>
+	</form>
+	<p><%= User.find(session[:user_id]).username %></p>
+<% else %>
+	<a href='/users/login'>login</a>
+	<a href='/users/new'>register</a>
+<% end %>
+
+
 <% @decks.each do |deck| %>
 	<form action="<%="/decks/#{deck.id}/rounds"%>" method="post">
 		<input type='submit' value="<%= deck.name %>">
