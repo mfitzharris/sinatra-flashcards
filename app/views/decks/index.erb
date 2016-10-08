@@ -1,3 +1,5 @@
 <% @decks.each do |deck| %>
-	<p><%= deck.name %></p>
+	<form action="<%="/decks/#{deck.id}/round"%>" method="post">
+		<input type='submit' value="<%= deck.name %>">
+	</form>
 <% end %>
