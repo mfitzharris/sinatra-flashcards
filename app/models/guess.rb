@@ -1,6 +1,7 @@
 class Guess < ActiveRecord::Base
   belongs_to :round
   belongs_to :card
+  has_one :user, through: :round, source: :user
 
   #belongs to cannot have a through
   # belongs_to :user, through: :round
