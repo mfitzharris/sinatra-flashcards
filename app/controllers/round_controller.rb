@@ -17,3 +17,20 @@ post '/decks/:deck_id/round' do
 	redirect "decks/#{params[:deck_id]}/cards/#{card_id}/round/#{round.id}"
 
 end
+
+#This was the best way I could think to access a guess within an erb that submits a form with a guess to an answer. to access a guess we need a card id and round id, so those are now in the route params. I was considering storing the round id in sessions but the logic seemed convoluted and Matt and mentor John told me yesterday that sessions should user as little as possible to persist state. They both said rely on urls more often than sessions. I am open to other ideas though.
+
+get 'decks/:deck_id/cards/:card_id/round/:id' do
+	@card = Card.find(params[:id])
+
+	guess = Guess.find_by(round_id: params[:round_id], card_id: params[:card_id])
+
+	if guess
+		@guess = guess
+		erb :'cards/show'
+	else
+		@guess = Guess.create(round_id: params[:round_id], card_id: params[:card_id])
+		erb :'cards/show'
+	end
+
+end
