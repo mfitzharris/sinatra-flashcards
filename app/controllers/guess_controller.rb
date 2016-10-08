@@ -1,6 +1,6 @@
 get '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses' do
 
-	@card = Card.find(params[:card_id])
+	@card = Card.find_by(id: params[:card_id])
 	guess = Guess.find_by(round_id: params[:round_id], card_id: params[:card_id])
 
 	if guess
@@ -16,12 +16,14 @@ end
 get '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:id' do
 
 	@deck_id = params[:deck_id]
-	@card = Card.find(params[:card_id])
+	@card = Card.find_by(id: params[:card_id])
 	@round_id = params[:round_id]
 	@guess_id = params[:id]
 
-	erb :login_logout do
-		erb :'cards/show'
+	if @card
+		erb :login_logout do
+			erb :'cards/show'
+		end
 	end
 	
 end
@@ -29,9 +31,9 @@ end
 put '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:guess_id' do
 
 	recent_guess = params[:guess]
-	card = Card.find(params[:card_id])
+	card = Card.find_by(id: params[:card_id])
 
-	guess = Guess.find(params[:guess_id])
+	guess = Guess.find_by(id: params[:guess_id])
 
 
 	#MVP logic. this will have to change when we random shuffle deck

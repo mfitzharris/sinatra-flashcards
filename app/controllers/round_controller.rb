@@ -12,7 +12,7 @@ post '/decks/:deck_id/rounds' do
 	end
 
 	#MVP feature. Final project should shuffle the deck then return the card id of the first card in the shuffled deck
-	card_id = Deck.find(params[:deck_id]).cards.first.id
+	card_id = Deck.find_by(id: params[:deck_id]).cards.first.id
 
 	redirect "decks/#{params[:deck_id]}/cards/#{card_id}/rounds/#{round.id}/guesses"
 
