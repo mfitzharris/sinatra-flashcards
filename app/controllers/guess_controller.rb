@@ -24,6 +24,8 @@ get '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:id' do
 		erb :login_logout do
 			erb :'cards/show'
 		end
+	else
+		redirect '/decks'
 	end
 	
 end
