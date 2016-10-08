@@ -1,4 +1,6 @@
 get '/decks' do
 	@decks = Deck.all
-	erb :'decks/index'
+	erb :login_logout do
+		erb :'decks/index'
+	end
 end
