@@ -1,0 +1,11 @@
+<% if session[:user_id] %>
+	<form action='/users/logout' method='post'>
+		<input type='hidden' name='_method' value='delete'>
+		<input type='submit' value='logout'>
+	</form>
+	<p><%= User.find(session[:user_id]).username%></p>
+<% else %>
+	<a href='/users/login'>login</a>
+	<a href='/users/new'>register</a>
+<% end %>
+<%= yield %>
