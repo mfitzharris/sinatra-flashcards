@@ -1,0 +1,10 @@
+<% if session[:user_id] %>
+	<form action='/users/logout' method='post'>
+		<input type='hidden' value='_method' name='delete'>
+		<input type='submit'>
+	</form>
+<% else %>
+	<a href='/users/login'>login</a>
+	<a href='/users/new'>register</a>
+<% end %>
+<%= yield %>
