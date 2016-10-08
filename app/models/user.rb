@@ -1,10 +1,10 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-
-	has_many :entries
-	has_many :guesses, through: :round
-
+	has_many :entries 
+	has_many :rounds
+	has_many :guesses, through: :rounds 
+	
 	validates :username, :email, :password_hash, :presence => true
 
 	validates :username, :email, :uniqueness => true
