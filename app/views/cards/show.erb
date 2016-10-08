@@ -1,6 +1,6 @@
 <p><%= @card.question %></p>
 
-<form action="<%="/decks/#{@card.deck.id}/card/#{@card.id}/guess/#{@guess.id}"%>" method='post'>
+<form action="<%="/decks/#{@deck_id}/cards/#{@card.id}/rounds/#{@round_id}/guesses/#{@guess_id}"%>" method='post'>
 	<input type='hidden' name='_method' value='put'>
 	<label for='title'>Enter your guess:</label>
 	<br>
