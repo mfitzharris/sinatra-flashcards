@@ -20,8 +20,10 @@ get '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:id' do
 	@round_id = params[:round_id]
 	@guess_id = params[:id]
 
-	erb :'cards/show'
-
+	erb :login_logout do
+		erb :'cards/show'
+	end
+	
 end
 
 put '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:guess_id' do
@@ -40,8 +42,6 @@ put '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:guess_id' do
 	if card.answer == recent_guess
 		guess.correct == true
 	end
-
-	p @card_id
 
 	redirect "decks/#{params[:deck_id]}/cards/#{@card_id}/rounds/#{params[:round_id]}/guesses"
 
