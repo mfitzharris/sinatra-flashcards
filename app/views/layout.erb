@@ -15,9 +15,13 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>Flashcards</title>
 </head>
 <body>
+  <header>
+    <h1><a href="/">Flashcards</a></h1>
+    <a href="/users/<%=session[:user_id]%>">Profile page</a>
+  </header>
   <%= yield %>
 </body>
 </html>
