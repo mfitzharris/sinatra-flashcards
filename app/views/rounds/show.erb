@@ -1,0 +1,5 @@
+<main>
+  <h3>Congrats on finishing the <%= @round.deck.name %> deck!</h3>
+  <p>You answered <%= @round.deck.cards.length %> cards </p>
+  <p>You submitted <%= total_guesses(@round)%> guesses before each card was answered correctly </p>
+</main>

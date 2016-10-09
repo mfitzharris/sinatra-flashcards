@@ -37,11 +37,11 @@ put '/decks/:deck_id/cards/:card_id/rounds/:round_id/guesses/:guess_id' do
 	end
 
 	@card_id = Deck.find(params[:deck_id]).cards.where( )
-	round = Round.find(params[:round_id])
-	false_guesses = round.guesses.select { |g| g.correct == false }
+	@round = Round.find(params[:round_id])
+	false_guesses = @round.guesses.select { |g| g.correct == false }
 
 	if false_guesses.length == 0
-		redirect "/"
+		erb :'/rounds/show'
 	else
 		@card_id = false_guesses.sample.card_id
 		redirect "decks/#{params[:deck_id]}/cards/#{@card_id}/rounds/#{params[:round_id]}/guesses"
