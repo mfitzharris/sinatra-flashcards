@@ -38,3 +38,12 @@ delete '/users/logout' do
 
 	redirect '/'
 end
+
+get '/users/:id' do
+	if User.find_by(id: session[:user_id]) == User.find_by(id: params[:id])	
+		@user = User.find_by(id: params[:id])
+		erb :'users/show'
+	else 
+		p session.inspect
+	end
+end

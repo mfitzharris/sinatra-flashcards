@@ -3,4 +3,12 @@
   <p>Email: <%= @user.email %> </p>
   <section id="played-games">
     <h3>Played games</h3>
+    <% @user.rounds.each do |round| %>
+      <div class="round_stats">
+      <p> <b>deck played: <%= round.deck.name %></b></p>
+      <p> at: <%= round.created_at %> </p>
+      <p> cards in deck: <%= round.deck.cards.length %> </p>
+      <p> number of total guesses: <%= total_guesses(round) %> </p>
+      </div>
+    <% end %>
   </section>
